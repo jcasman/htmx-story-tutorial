@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/favicon.ico') }}">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ai-blue': '#3B82F6',
+                        'ai-purple': '#8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        {% include 'partials/header.html' %}
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-ai-blue to-ai-purple text-white py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl font-bold mb-6">FastAPI MVS Architecture</h1>
+                    <p class="text-xl mb-8">
+                        This document outlines the Model-View-Service (MVS) architecture implemented in this FastAPI application.
+                    </p>
+                </div>
+            </section>
+
+            <!-- FastOpp Features Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">
+                        FastOpp provides an opinionated framework for FastAPI with the following features:
+                    </h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700">admin panel similar to Django with role-based authentication</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700">SQL database with Django-inspired models and migrations</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700">Django-style HTML templates with modern UI components</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700">API endpoints to connect to other frontend frameworks</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700">auto-generated documentation for API endpoints</p>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="w-6 h-6 bg-ai-blue rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                </div>
+                                <p class="text-gray-700 font-normal">oppman.py management tool with some functionality similar to Django manage</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture Overview -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold mb-8 text-gray-900">Architecture Overview</h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        The application has been refactored from a monolithic <code class="bg-gray-100 px-2 py-1 rounded">main.py</code> file into a well-organized structure that separates concerns and improves maintainability.
+                    </p>
+
+                    <!-- Directory Structure -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900">Directory Structure</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg overflow-x-auto">
+                            <pre class="text-sm text-gray-800"><code>fastopp/
+├── main.py                # New refactored entry point (MVS Architecture)
+├── routes/                # Route handlers (View layer)
+│   ├── __init__.py
+│   ├── pages.py          # Page rendering routes
+│   ├── auth.py           # Authentication routes
+│   ├── api.py            # API data endpoints
+│   └── webinar.py        # Webinar management routes
+├── services/             # Business logic (Service layer)
+│   ├── __init__.py
+│   ├── product_service.py
+│   └── webinar_service.py
+├── models.py             # Data models (Model layer)
+├── db.py                 # Database configuration
+├── auth.py               # Authentication utilities
+└── admin/                # Admin interface</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- Components Table -->
+                    <div class="mb-12">
+                        <h3 class="text-2xl font-bold mb-6 text-gray-900">Components</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Functional Concept</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Component</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Django Equivalent</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Production Web Server</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">FastAPI + uvicorn (for loads < 1,000 concurrent connections)</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">NGINX + Gunicorn</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Development Web Server</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">uvicorn</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">manage.py runserver in development. Django Framework</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Development SQL Database</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">SQLite</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">SQLite</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Production SQL Database</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">PostgreSQL with pgvector</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">PostgreSQL + pgvector, asyncpg</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">User Management</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">FastAPI Users</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Django Admin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Database Management</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">SQLAdmin + Template</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Django Admin</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm text-gray-900">Authentication</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Custom JWT + Session Auth (with database user verification and FastAPI Users password hashing)</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Django Admin Auth</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Layer Responsibilities -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold mb-12 text-gray-900 text-center">Layer Responsibilities</h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Model Layer -->
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="w-16 h-16 bg-ai-blue rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">1. Model Layer (models.py)</h3>
+                            <p class="text-gray-600 mb-4 text-center">Define data structures and database models</p>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    SQLModel/SQLAlchemy model definitions
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    Data validation and constraints
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    Database schema representation
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- View Layer -->
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="w-16 h-16 bg-ai-purple rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">2. View Layer (routes/)</h3>
+                            <p class="text-gray-600 mb-4 text-center">Handle HTTP requests and responses</p>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-2">•</span>
+                                    Route definitions and HTTP method handling
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-2">•</span>
+                                    Request/response formatting
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-2">•</span>
+                                    Input validation and error handling
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Service Layer -->
+                        <div class="bg-white p-8 rounded-xl shadow-lg">
+                            <div class="w-16 h-16 bg-gradient-to-br from-ai-blue to-ai-purple rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">3. Service Layer (services/)</h3>
+                            <p class="text-gray-600 mb-4 text-center">Business logic and data operations</p>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    Database operations
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    Business rules implementation
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-2">•</span>
+                                    Data transformation
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Benefits Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold mb-12 text-gray-900 text-center">Benefits of This Architecture</h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">1. Separation of Concerns</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Routes handle HTTP concerns only</li>
+                                <li>• Services contain business logic</li>
+                                <li>• Models focus on data structure</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">2. Maintainability</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Smaller, focused files (50-100 lines each vs 552 lines)</li>
+                                <li>• Clear responsibility boundaries</li>
+                                <li>• Easier to locate and modify specific functionality</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">3. Testability</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Services can be unit tested independently</li>
+                                <li>• Routes can be tested with mocked services</li>
+                                <li>• Clear interfaces between layers</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">4. Reusability</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Services can be used by multiple routes</li>
+                                <li>• Business logic is centralized</li>
+                                <li>• Consistent error handling</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-3 text-gray-900">5. Scalability</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Easy to add new route modules</li>
+                                <li>• Services can be extended without affecting routes</li>
+                                <li>• Clear patterns for new features</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Migration Guide -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold mb-8 text-gray-900">Migration Guide</h2>
+                    <p class="text-lg text-gray-600 mb-8">
+                        The original <code class="bg-gray-100 px-2 py-1 rounded">main.py</code> contained 552 lines of mixed responsibilities. The new structure provides:
+                    </p>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-white p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-900">Before: Monolithic Structure</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• 552 lines of mixed responsibilities</li>
+                                <li>• Database operations in route handlers</li>
+                                <li>• File handling logic in routes</li>
+                                <li>• Business logic scattered throughout</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white p-6 rounded-lg">
+                            <h3 class="text-lg font-semibold mb-4 text-gray-900">After: MVS Architecture</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li>• Routes: 20-50 lines each, focused on HTTP handling</li>
+                                <li>• Services: 50-100 lines each, focused on business logic</li>
+                                <li>• Main: 60 lines, focused on app configuration</li>
+                                <li>• Clear separation of concerns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+</body>
+</html>

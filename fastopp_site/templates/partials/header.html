@@ -1,0 +1,60 @@
+<!-- Navigation -->
+<nav class="bg-white shadow-lg" x-data="{ mobileMenuOpen: false }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+            <div class="flex items-center">
+                <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
+                    <img src="{{ url_for('static', path='/images/oppkey_logo.jpg') }}" 
+                         alt="Oppkey Logo" 
+                         class="h-8 w-auto mr-3">
+                    <span class="text-xl font-bold text-gray-900">FastOpp</span>
+                </a>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/volunteers" 
+                   class="{% if current_page == 'volunteers' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue transition-colors{% endif %}">Volunteers</a>
+                <a href="/project" 
+                   class="{% if current_page == 'project' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue transition-colors{% endif %}">Project</a>
+                <a href="/documentation" 
+                   class="{% if current_page == 'documentation' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue transition-colors{% endif %}">Documentation</a>
+                <a href="/tutorials" 
+                   class="{% if current_page == 'tutorials' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue transition-colors{% endif %}">Tutorials</a>
+                <span class="text-gray-400">|</span>
+                <a href="https://github.com/Oppkey/fastopp" 
+                   class="text-gray-600 hover:text-ai-blue transition-colors" target="_blank">GitHub</a>
+            </div>
+            
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button @click="mobileMenuOpen = !mobileMenuOpen" 
+                        class="text-gray-600 hover:text-ai-blue">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div x-show="mobileMenuOpen" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 transform -translate-y-2"
+             x-transition:enter-end="opacity-100 transform translate-y-0"
+             class="md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="/volunteers" 
+                   class="block px-3 py-2 {% if current_page == 'volunteers' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue{% endif %}">Volunteers</a>
+                <a href="/project" 
+                   class="block px-3 py-2 {% if current_page == 'project' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue{% endif %}">Project</a>
+                <a href="/documentation" 
+                   class="block px-3 py-2 {% if current_page == 'documentation' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue{% endif %}">Documentation</a>
+                <a href="/tutorials" 
+                   class="block px-3 py-2 {% if current_page == 'tutorials' %}text-ai-blue font-medium{% else %}text-gray-600 hover:text-ai-blue{% endif %}">Tutorials</a>
+                <div class="border-t border-gray-300 my-2"></div>
+                <a href="https://github.com/Oppkey/fastopp" 
+                   class="block px-3 py-2 text-gray-600 hover:text-ai-blue" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </div>
+</nav>

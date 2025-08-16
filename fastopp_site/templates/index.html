@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/favicon.ico') }}">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ai-blue': '#3B82F6',
+                        'ai-purple': '#8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        {% include 'partials/header.html' %}
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-ai-blue to-ai-purple text-white py-20">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div class="flex justify-center mb-8">
+                        <img src="{{ url_for('static', path='/images/fastopp_logo.webp') }}" 
+                             alt="FastOpp Logo" 
+                             class="h-32 w-auto rounded-lg shadow-lg">
+                    </div>
+                    <p class="text-xl mb-8 max-w-3xl mx-auto">
+                        FastAPI starter package for AI web applications. It uses pre-built admin
+                        components to give FastAPI functionality comparable to Django
+                        for AI-first applications.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="/project" 
+                           class="bg-white text-ai-blue px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                            Learn More
+                        </a>
+                        <a href="https://github.com/Oppkey/fastopp" 
+                           class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-ai-blue transition-colors" target="_blank">
+                            View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- Target Audience Section -->
+            <section class="py-16 bg-gray-50">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">
+                        Target Audience
+                    </h2>
+                    <p class="text-lg text-center mb-8 text-gray-600">
+                        This stack is opinionated and may not be for you. It is intended for students and novice developers who
+                        know Python, but are not strong in or do not like JavaScript.
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl shadow-lg border border-blue-100">
+                            <ul class="space-y-4 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You strongly prefer Python over JavaScript on the backend</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You prefer to handle logic on the Python backend instead of using JavaScript code on the frontend</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-blue mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You prefer inline styling instead of separation of concerns with CSS in separate files</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl shadow-lg border border-purple-100">
+                            <ul class="space-y-4 text-gray-700">
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You prefer typed languages and want to use Python optional type hints instead of relying only on dynamic typing</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You prefer HTML files with Python code and variables embedded in the HTML instead of embedding HTML in the Python code on the server</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-ai-purple mr-3 text-xl font-bold">•</span>
+                                    <span class="text-lg">You are using Django or Flask and are having problems with async LLM communication</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Main Cards Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">
+                        Get Started with FastOpp
+                    </h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <!-- Volunteers Card -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow flex flex-col border border-gray-200">
+                            <div class="flex-1">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Call For Volunteers</h3>
+                                <p class="text-gray-600 mb-6 text-center">
+                                    AI Software Developer Position (Volunteer and 100% Remote)
+                                </p>
+                                <p class="text-sm text-gray-500 mb-6">
+                                    Oppkey, a developer relations firm in Silicon Valley, is seeking an undergraduate computer science student to receive hands-on training on modern AI software development using cutting-edge technologies.
+                                </p>
+                            </div>
+                            <a href="/volunteers" 
+                               class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all text-center">
+                                Learn More
+                            </a>
+                        </div>
+
+                        <!-- Project Description Card -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow flex flex-col border border-gray-200">
+                            <div class="flex-1">
+                                <div class="w-16 h-16 bg-gradient-to-br from-ai-blue to-ai-purple rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Project Description</h3>
+                                <p class="text-gray-600 mb-6 text-center">
+                                    Learn about the MVS Architecture and code organization behind FastOpp
+                                </p>
+                                <p class="text-sm text-gray-500 mb-6">
+                                    Explore the Model-View-Service architecture, directory structure, and how FastOpp provides Django-like functionality with modern FastAPI capabilities.
+                                </p>
+                            </div>
+                            <a href="/project" 
+                               class="inline-block bg-gradient-to-r from-ai-blue to-ai-purple text-white px-6 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all text-center">
+                                Learn More
+                            </a>
+                        </div>
+
+                        <!-- Documentation Card -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow flex flex-col border border-gray-200">
+                            <div class="flex-1">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Documentation</h3>
+                                <p class="text-gray-600 mb-6 text-center">
+                                    Complete documentation links from FastOpp repository
+                                </p>
+                                <p class="text-sm text-gray-500 mb-6">
+                                    Access all documentation sections including getting started, architecture, authentication, deployment, database setup, file management, AI integration, and troubleshooting guides.
+                                </p>
+                            </div>
+                            <a href="/documentation" 
+                               class="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-600 hover:to-pink-600 transition-all text-center">
+                                View Documentation
+                            </a>
+                        </div>
+
+                        <!-- Tutorials Card -->
+                        <div class="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow flex flex-col border border-gray-200">
+                            <div class="flex-1">
+                                <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900 text-center">Tutorials</h3>
+                                <p class="text-gray-600 mb-6 text-center">
+                                    Step-by-step tutorials and guides
+                                </p>
+                                <p class="text-sm text-gray-500 mb-6">
+                                    Follow our tutorials to learn how to add new pages, manage migrations, deploy to production, and more with FastOpp.
+                                </p>
+                            </div>
+                            <a href="/tutorials" 
+                               class="inline-block bg-gradient-to-r from-orange-400 to-red-500 text-white px-6 py-3 rounded-lg font-semibold hover:from-orange-500 hover:to-red-600 transition-all text-center">
+                                View Tutorials
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Modern Web Technologies Section -->
+            <section class="py-20 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">
+                        Demonstration of Modern Web Technologies
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- HTMX Feature -->
+                        <div class="group" x-data="{ hovered: false }" 
+                             @mouseenter="hovered = true" 
+                             @mouseleave="hovered = false">
+                            <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl transition-all duration-300"
+                                 :class="hovered ? 'shadow-xl scale-105' : 'shadow-lg'">
+                                <div class="w-16 h-16 bg-ai-blue rounded-lg flex items-center justify-center mb-6">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900">HTMX Integration</h3>
+                                <p class="text-gray-600">
+                                    Real-time communication with the server using HTMX for seamless chat experience without page refreshes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Alpine.js Feature -->
+                        <div class="group" x-data="{ hovered: false }" 
+                             @mouseenter="hovered = true" 
+                             @mouseleave="hovered = false">
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl transition-all duration-300"
+                                 :class="hovered ? 'shadow-xl scale-105' : 'shadow-lg'">
+                                <div class="w-16 h-16 bg-ai-purple rounded-lg flex items-center justify-center mb-6">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900">Alpine.js Magic</h3>
+                                <p class="text-gray-600">
+                                    Reactive UI components and smooth animations powered by Alpine.js for an interactive chat experience.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Tailwind Feature -->
+                        <div class="group" x-data="{ hovered: false }" 
+                             @mouseenter="hovered = true" 
+                             @mouseleave="hovered = false">
+                            <div class="bg-gradient-to-br from-green-50 to-blue-50 p-8 rounded-xl transition-all duration-300"
+                                 :class="hovered ? 'shadow-xl scale-105' : 'shadow-lg'">
+                                <div class="w-16 h-16 bg-gradient-to-br from-ai-blue to-ai-purple rounded-lg flex items-center justify-center mb-6">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900">Tailwind CSS</h3>
+                                <p class="text-gray-600">
+                                    Beautiful, responsive design with utility-first CSS framework for a modern and polished interface.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- DaisyUI Feature -->
+                        <div class="group" x-data="{ hovered: false }" 
+                             @mouseenter="hovered = true" 
+                             @mouseleave="hovered = false">
+                            <div class="bg-gradient-to-br from-pink-50 to-purple-50 p-8 rounded-xl transition-all duration-300"
+                                 :class="hovered ? 'shadow-xl scale-105' : 'shadow-lg'">
+                                <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-lg flex items-center justify-center mb-6">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900">DaisyUI Components</h3>
+                                <p class="text-gray-600">
+                                    Professional chat bubbles, buttons, and form elements with built-in theming and responsive design.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- OpenRouter Feature -->
+                        <div class="group" x-data="{ hovered: false }" 
+                             @mouseenter="hovered = true" 
+                             @mouseleave="hovered = false">
+                            <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-xl transition-all duration-300"
+                                 :class="hovered ? 'shadow-xl scale-105' : 'shadow-lg'">
+                                <div class="w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-500 rounded-lg flex items-center justify-center mb-6">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-4 text-gray-900">OpenRouter</h3>
+                                <p class="text-gray-600">
+                                    AI gateway for developers providing a single, standardized API to access LLMs from multiple providers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+</body>
+</html>

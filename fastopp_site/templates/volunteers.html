@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='/favicon.ico') }}">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Alpine.js CDN -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'ai-blue': '#3B82F6',
+                        'ai-purple': '#8B5CF6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex flex-col">
+        {% include 'partials/header.html' %}
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-green-500 to-emerald-600 text-white py-20">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl font-bold mb-6">AI Software Developer Position</h1>
+                    <p class="text-xl mb-8">Volunteer and 100% Remote</p>
+                    <p class="text-lg mb-8">
+                        Oppkey, a developer relations firm in Silicon Valley, is seeking an undergraduate computer science student to receive hands-on training on modern AI software development using cutting-edge technologies.
+                    </p>
+                    <a href="https://fastcfv-applicants.fly.dev/" 
+                       class="inline-block bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors" target="_blank">
+                        How to Apply
+                    </a>
+                </div>
+            </section>
+
+            <!-- What You'll Learn Section -->
+            <section class="py-16 bg-white">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h2 class="text-3xl font-bold text-center mb-12 text-gray-900">
+                        What You'll Learn
+                    </h2>
+                    <p class="text-lg text-center mb-12 text-gray-600 max-w-4xl mx-auto">
+                        You will receive comprehensive training with a production-ready AI technology stack that's used by top tech companies:
+                    </p>
+
+                    <!-- Core Technologies -->
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-bold mb-8 text-gray-900 text-center">Core Technologies</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <!-- FastAPI -->
+                            <div class="bg-gray-50 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-ai-blue rounded-lg flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-900">FastAPI</h4>
+                                </div>
+                                <p class="text-gray-600 mb-4">Modern, high-performance Python web framework</p>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <span class="text-ai-blue mr-2">•</span>
+                                        Automatic API documentation generation
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-ai-blue mr-2">•</span>
+                                        Type safety with Pydantic validation
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-ai-blue mr-2">•</span>
+                                        Async/await support for high concurrency
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-ai-blue mr-2">•</span>
+                                        Used by Netflix, Uber, and Microsoft
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- PostgreSQL + SQLite -->
+                            <div class="bg-gray-50 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-900">PostgreSQL + SQLite</h4>
+                                </div>
+                                <p class="text-gray-600 mb-4">Professional database management</p>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <span class="text-purple-500 mr-2">•</span>
+                                        Vector database support with pgvector
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-purple-500 mr-2">•</span>
+                                        Embedding storage for AI applications
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-purple-500 mr-2">•</span>
+                                        Production-ready data persistence
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- pgvector -->
+                            <div class="bg-gray-50 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-900">pgvector</h4>
+                                </div>
+                                <p class="text-gray-600 mb-4">Vector database for AI</p>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2">•</span>
+                                        Store and query embeddings
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2">•</span>
+                                        Semantic search capabilities
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-green-500 mr-2">•</span>
+                                        RAG (Retrieval-Augmented Generation) support
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- OpenRouter API -->
+                            <div class="bg-gray-50 p-8 rounded-xl">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-orange-500 rounded-lg flex items-center justify-center mr-4">
+                                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-xl font-semibold text-gray-900">OpenRouter API</h4>
+                                </div>
+                                <p class="text-gray-600 mb-4">Multi-model AI access</p>
+                                <ul class="space-y-2 text-sm text-gray-600">
+                                    <li class="flex items-start">
+                                        <span class="text-orange-500 mr-2">•</span>
+                                        Drop-in replacement for OpenAI API
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-orange-500 mr-2">•</span>
+                                        Access to 100+ AI models (GPT-4, Claude, Llama, etc.)
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-orange-500 mr-2">•</span>
+                                        Cost-effective AI model switching
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modern Web Technologies -->
+                    <div class="mb-16">
+                        <h3 class="text-2xl font-bold mb-8 text-gray-900 text-center">Modern Web Technologies</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <h4 class="font-semibold text-blue-900 mb-2">HTMX</h4>
+                                <p class="text-sm text-blue-700">Dynamic web interfaces without JavaScript frameworks</p>
+                            </div>
+                            <div class="bg-purple-50 p-6 rounded-lg">
+                                <h4 class="font-semibold text-purple-900 mb-2">Alpine.js</h4>
+                                <p class="text-sm text-purple-700">Lightweight reactive JavaScript</p>
+                            </div>
+                            <div class="bg-cyan-50 p-6 rounded-lg">
+                                <h4 class="font-semibold text-cyan-900 mb-2">Tailwind CSS</h4>
+                                <p class="text-sm text-cyan-700">Utility-first CSS framework</p>
+                            </div>
+                            <div class="bg-pink-50 p-6 rounded-lg">
+                                <h4 class="font-semibold text-pink-900 mb-2">DaisyUI</h4>
+                                <p class="text-sm text-pink-700">Component library for rapid UI development</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Development Tools -->
+                    <div>
+                        <h3 class="text-2xl font-bold mb-8 text-gray-900 text-center">Development Tools</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-gray-50 p-6 rounded-lg text-center">
+                                <h4 class="font-semibold text-gray-900 mb-2">uv</h4>
+                                <p class="text-sm text-gray-600">Fast Python package manager</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg text-center">
+                                <h4 class="font-semibold text-gray-900 mb-2">Alembic</h4>
+                                <p class="text-sm text-gray-600">Database migration management</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg text-center">
+                                <h4 class="font-semibold text-gray-900 mb-2">SQLModel</h4>
+                                <p class="text-sm text-gray-600">SQL databases in Python with type safety</p>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-lg text-center">
+                                <h4 class="font-semibold text-gray-900 mb-2">FastAPI Users</h4>
+                                <p class="text-sm text-gray-600">Authentication and user management</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Apply Section -->
+            <section class="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-900">Ready to Get Started?</h2>
+                    <p class="text-lg mb-8 text-gray-600">
+                        Join us in building the future of AI web applications with cutting-edge technologies.
+                    </p>
+                    <a href="https://fastcfv-applicants.fly.dev/" 
+                       class="inline-block bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-green-600 hover:to-emerald-700 transition-all text-lg" target="_blank">
+                        Apply Now
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+</body>
+</html>
